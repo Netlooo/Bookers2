@@ -13,9 +13,16 @@
 
   <body>
     <header>
+      <nav class="navbar navbar-expend-lg navbar-dark bg-dark">
+        <div class="container">
+          <a class="navbar-brand" href="/">
+            <span>Bookers</span>
+          </a>
+        </div>
+      </nav>
       <% if user_signed_in? %>
         <li>
-          <%= link_to "Home", user_path(user.id) %>
+          <%= link_to "Home", user_path(current_user.id) %>
         </li>
         <li>
           <%= link_to "Users", users_path %>
