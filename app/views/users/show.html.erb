@@ -18,8 +18,9 @@
         </tbody>
       </table>
       <div class="row">
-        <%= link_to "edit", edit_user_path(@user) %>
-
+        <%= link_to  edit_user_path(@user) do %>
+          <i class="fas fa-user-cog"></i>
+        <% end %>
       </div>
       <h2 class="mt-3">New book</h2>
       <% if @book.errors.any? %>
@@ -58,7 +59,7 @@
         <tbody>
           <% @users.each do |user| %>
           <tr>
-            <td><%= user.image %></td>
+            <td><%= image_tag user.get_profile_image(100,100) %></td>
             <td><%= user.name %></td>
           </tr>
           <% end %>
