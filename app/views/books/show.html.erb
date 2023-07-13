@@ -1,3 +1,6 @@
+<div>
+  <%= flash[:notice] %>
+</div>
 <div class="container px-5 px-sm-0">
   <div class="row">
     <%= render 'list', book: @book_new, user: @user %>
@@ -6,21 +9,19 @@
       <table class="table table-hover table-inverse">
         <tbody>
           <td>
-            <%= image_tag user.get_profile_image(100,100) %><br>
+            <%= image_tag @user.get_profile_image(100,100) %><br>
             <%= link_to @user.name, user_path(@user) %>
           </td>
           <td><%= link_to @book.title, book_path(@book) %></td>
-          <td><%= book.body %></td>
+          <td><%= @book.body %></td>
+          <% if @user == current_user %>
           <td>
-            <%= link_to edit_book_path(@book) do %>
-              <button type="button" class="btn btn-sm btn-success">Edit</button>
-            <% end %>
+            <%= link_to "Edit", edit_book_path(@book), class: "btn btn-sm btn-success"%>
           </td>
           <td>
-            <%= link_to book_path(@book), method: :delete, "data-confirm" => "本当に削除しますか？" do %>
-              <button type="button" class="btn btn-sm btn-danger">Destroy</button>
-            <% end %>
+            <%= link_to "Destroy", book_path(@book), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-sm btn-danger" %>
           </td>
+          <% end %>
         </tbody>
       </table>
     </div>
